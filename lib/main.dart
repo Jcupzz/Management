@@ -1,3 +1,5 @@
+import 'package:cce/Pages/Branch.dart';
+import 'package:cce/Pages/MyBottomNavigationBar.dart';
 import 'package:cce/Pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,7 +14,7 @@ Future<void> main() async {
   var email = prefs.getString('userId');
   print(email);
   userId = email;
-  runApp(MaterialApp(home: email == null ? RegisterPage() : HomeScreen()));
+  runApp(MaterialApp(home: email == null ? RegisterPage() : MyBottomNavigationBar()));
 }
 
 //TODO check and remove redirection to container from here if possible

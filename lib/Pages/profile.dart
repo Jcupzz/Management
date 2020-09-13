@@ -1,3 +1,4 @@
+import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
@@ -13,7 +14,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueAccent[100],
+      backgroundColor: COLORS.colorBackground,
 
       // appBar: AppBar(
       //   title: Text("Profile"),

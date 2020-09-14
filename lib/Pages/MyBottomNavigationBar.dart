@@ -1,4 +1,5 @@
 import 'package:cce/Pages/Branch.dart';
+import 'package:cce/Pages/UserProfile.dart';
 import 'package:cce/Pages/home.dart';
 import 'package:cce/Pages/profile.dart';
 import 'package:cce/Theme/COLORS.dart';
@@ -12,11 +13,12 @@ class MyBottomNavigationBar extends StatefulWidget {
 
 class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
   int _page = 0;
-  final _pageOption = [Branch(), HomeScreen(), Profile()];
+  final _pageOption = [Branch(), HomeScreen(), UserProfile()];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       bottomNavigationBar: CurvedNavigationBar(
         animationCurve: Curves.bounceInOut,
         animationDuration: Duration(milliseconds: 200),
@@ -37,7 +39,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             color: COLORS.colorAccent,
           ),
           Icon(
-            Icons.notifications_active,
+            Icons.person_outline,
             size: 20,
             color: COLORS.colorAccent,
           ),

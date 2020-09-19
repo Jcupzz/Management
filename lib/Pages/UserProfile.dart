@@ -11,7 +11,9 @@ class UserProfile extends StatefulWidget {
 class _UserProfileState extends State<UserProfile> {
   bool iseditable = false;
   String sem = 'S1';
-  String branch = 'CSE';
+  String branch = 'Computer Science';
+  String scheme = '2015';
+  String _name;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +21,11 @@ class _UserProfileState extends State<UserProfile> {
         ? Scaffold(
             backgroundColor: COLORS.colorBackground,
             body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Center(
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
                         "Edit Profile",
@@ -38,45 +41,311 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                       ),
                       Divider(),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
+                            "Name",
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      TextFormField(
+                        validator: (val) => val.isEmpty
+                            ? 'This cannot be empty!'
+                            : null,
+                        onSaved: (input){
+                          _name = input;
+                        },
+                        style: TextStyle(color: Colors.white),
+                        cursorColor: COLORS.colorAccent,
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                              fontSize: 20,color: COLORS.colorText,fontFamily: "Sans",
+                          ),
+                          labelText: "Name",
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                            BorderSide(width: 1, color: COLORS.colorAccent),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                                width: 1, color: COLORS.colorPrimaryDark),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
                             "Branch",
-                            style: MyTextStyle.edit_profile_title,
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
                           ),
-                          DropdownButton<String>(
-                            value: branch,
-                            icon: Icon(Icons.arrow_drop_down),
-                            iconSize: 24,
-                            elevation: 16,
-                            style: TextStyle(color: Colors.deepPurple),
-                            underline: Container(
-                              height: 2,
-                              color: Colors.deepPurpleAccent,
-                            ),
-                            onChanged: (String newValue) {
-                              setState(() {
-                                branch = newValue;
-                              });
-                            },
-                            items: <String>['CSE', 'CE', 'EC', 'EEE', 'ME']
-                                .map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
-                            // onChanged: null
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: COLORS.colorPrimaryDark)),
+                        child: DropdownButton<String>(
+                          value: branch,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: COLORS.colorPrimaryDark,
                           ),
-                        ],
-                      )
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              branch = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'Computer Science',
+                            'Electronics Engineering',
+                            'Mechanical Engineering',
+                            'Civil Engineering',
+                            'Electrical Engineering'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: COLORS.colorText,
+                                    fontFamily: "Sans",
+                                    ),
+                              ),
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
+                            "Semester",
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: COLORS.colorPrimaryDark)),
+                        child: DropdownButton<String>(
+                          value: sem,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: COLORS.colorPrimaryDark,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              sem = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'S1',
+                            'S2',
+                            'S3',
+                            'S4',
+                            'S5',
+                            'S6',
+                            'S7',
+                            'S8'
+                            ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: COLORS.colorText,
+                                  fontFamily: "Sans",
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
+                      ),
+
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
+                            "Scheme",
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(color: COLORS.colorPrimaryDark)),
+                        child: DropdownButton<String>(
+                          value: scheme,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: COLORS.colorPrimaryDark,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              scheme = newValue;
+                            });
+                          },
+                          items: <String>[
+                            '2015',
+                            '2019',
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: COLORS.colorText,
+                                  fontFamily: "Sans",
+                                ),
+                              ),
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
+                            "ID",
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      TextFormField(
+                        validator: (val) => val.isEmpty
+                            ? 'This cannot be empty!'
+                            : null,
+                        onSaved: (input){
+                          _name = input;
+                        },
+                        style: TextStyle(color: Colors.white),
+                        cursorColor: COLORS.colorAccent,
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                            fontSize: 20,color: COLORS.colorText,fontFamily: "Sans",
+                          ),
+                          labelText: "ID",
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                            BorderSide(width: 1, color: COLORS.colorAccent),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                                width: 1, color: COLORS.colorPrimaryDark),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 5, 10, 3),
+                          child: Text(
+                            "Phone",
+                            style: TextStyle(fontSize: 15,color: COLORS.colorText,fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.left,
+                          ),
+                        ),
+                      ),
+                      TextFormField(
+                        validator: (val) => val.isEmpty
+                            ? 'This cannot be empty!'
+                            : null,
+                        onSaved: (input){
+                          _name = input;
+                        },
+                        style: TextStyle(color: Colors.white),
+                        cursorColor: COLORS.colorAccent,
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(
+                            fontSize: 20,color: COLORS.colorText,fontFamily: "Sans",
+                          ),
+                          labelText: "Phone",
+                          alignLabelWithHint: true,
+                          fillColor: Colors.white,
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide:
+                            BorderSide(width: 1, color: COLORS.colorAccent),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(
+                                width: 1, color: COLORS.colorPrimaryDark),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
               ),
-            ))
+            ),
+          )
         : Scaffold(
             backgroundColor: COLORS.colorBackground,
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,

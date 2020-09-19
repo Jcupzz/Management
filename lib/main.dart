@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'CCE',
       theme: ThemeData(
-        textTheme:TextTheme(
-
-          ) ,
       ),
       home: success ? HomeScreen() : RegisterPage(),
     );

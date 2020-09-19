@@ -1,3 +1,4 @@
+import 'package:cce/Constants/MyTextStyle.dart';
 import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,25 +10,73 @@ class UserProfile extends StatefulWidget {
 
 class _UserProfileState extends State<UserProfile> {
   bool iseditable = false;
+  String sem = 'S1';
+  String branch = 'CSE';
 
   @override
   Widget build(BuildContext context) {
     return iseditable
         ? Scaffold(
-            body: Column(
-            children: [
-              SafeArea(
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      iseditable = false;
-                    });
-                  },
-                  child: Text("done"),
+            backgroundColor: COLORS.colorBackground,
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        "Edit Profile",
+                        style: TextStyle(color: COLORS.colorText, fontSize: 20),
+                      ),
+                      Divider(),
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              "https://images5.alphacoders.com/423/thumb-1920-423529.jpg"),
+                          radius: 80.0,
+                        ),
+                      ),
+                      Divider(),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Branch",
+                            style: MyTextStyle.edit_profile_title,
+                          ),
+                          DropdownButton<String>(
+                            value: branch,
+                            icon: Icon(Icons.arrow_drop_down),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: TextStyle(color: Colors.deepPurple),
+                            underline: Container(
+                              height: 2,
+                              color: Colors.deepPurpleAccent,
+                            ),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                branch = newValue;
+                              });
+                            },
+                            items: <String>['CSE', 'CE', 'EC', 'EEE', 'ME']
+                                .map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                            // onChanged: null
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
-              )
-            ],
-          ))
+              ),
+            ))
         : Scaffold(
             backgroundColor: COLORS.colorBackground,
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
@@ -109,7 +158,8 @@ class _UserProfileState extends State<UserProfile> {
                                         30, 30, 30, 10),
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Column(
                                           children: [
@@ -160,7 +210,7 @@ class _UserProfileState extends State<UserProfile> {
                                         Column(
                                           children: [
                                             Text(
-                                              "Branch",
+                                              "Scheme",
                                               style: TextStyle(
                                                   fontSize: 18,
                                                   color: COLORS.colorText,
@@ -171,7 +221,7 @@ class _UserProfileState extends State<UserProfile> {
                                               height: 15,
                                             ),
                                             Text(
-                                              "CSE",
+                                              "2015",
                                               style: TextStyle(
                                                   fontSize: 15,
                                                   color: COLORS.colorText,
@@ -189,26 +239,69 @@ class _UserProfileState extends State<UserProfile> {
                           ),
                         ),
                       ),
-
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20,0,20,20),
-                        child: Card(
-                          color: COLORS.colorPrimaryDark,
-                          child:Padding(
-                            padding: const EdgeInsets.fromLTRB(20,30,20,20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text("ID"),
-                                Text("2019035")
-                              ],
-                            ),
+                        padding: const EdgeInsets.fromLTRB(20, 5, 20, 5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: COLORS.colorPrimaryDark),
+                          width: MediaQuery.of(context).size.width,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              ListTile(
+                                dense: true,
+                                leading: Icon(
+                                  Icons.person,
+                                  size: 35,
+                                  color: COLORS.colorBackground,
+                                ),
+                                title: Text(
+                                  "ID",
+                                  style: MyTextStyle.profile_title,
+                                ),
+                                subtitle: Text(
+                                  "2019035",
+                                  style: MyTextStyle.profile_content,
+                                ),
+                              ),
+                              ListTile(
+                                dense: true,
+                                leading: Icon(
+                                  Icons.alternate_email,
+                                  size: 35,
+                                  color: COLORS.colorBackground,
+                                ),
+                                title: Text(
+                                  "Email",
+                                  style: MyTextStyle.profile_title,
+                                ),
+                                subtitle: Text(
+                                  "jcupzz255@gmail.com",
+                                  style: MyTextStyle.profile_content,
+                                ),
+                              ),
+                              ListTile(
+                                dense: true,
+                                leading: Icon(
+                                  Icons.phone,
+                                  size: 35,
+                                  color: COLORS.colorBackground,
+                                ),
+                                title: Text(
+                                  "Phone",
+                                  style: MyTextStyle.profile_title,
+                                ),
+                                subtitle: Text(
+                                  "8129720659",
+                                  style: MyTextStyle.profile_content,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                      )
-
+                      ),
                     ],
                   ),
                 ),

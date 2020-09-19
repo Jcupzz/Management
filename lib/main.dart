@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Pages/Register.dart';
+import 'Theme/COLORS.dart';
 
 String userId;
 bool success = false;
@@ -24,7 +25,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CCE',
-      theme: ThemeData(primarySwatch: Colors.amber),
+      theme: ThemeData(
+        textTheme:TextTheme(
+
+          ) ,
+      ),
       home: success ? HomeScreen() : RegisterPage(),
     );
   }

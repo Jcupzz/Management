@@ -2,12 +2,7 @@ import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class CE extends StatefulWidget {
-  @override
-  _CEState createState() => _CEState();
-}
-
-class _CEState extends State<CE> {
+class CE extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +13,11 @@ class _CEState extends State<CE> {
             flex: 15,
             child: Lottie.asset("assets/lottie/civil_one.json",
                 width: double.infinity,
-                height: double.infinity),
+                height: double.infinity,
+                alignment: Alignment.center,
+
+            ),
           ),
-          Divider(),
           Flexible(
               flex: 3,
               child: Container(
@@ -38,5 +35,6 @@ class _CEState extends State<CE> {
           ),
         ],
       ),
-    );  }
+    );
+  }
 }

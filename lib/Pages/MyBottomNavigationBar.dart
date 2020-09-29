@@ -5,6 +5,7 @@ import 'package:cce/Pages/profile.dart';
 import 'package:cce/Theme/COLORS.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MyBottomNavigationBar extends StatefulWidget {
   @override
@@ -17,8 +18,8 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
+    HapticFeedback.mediumImpact();
     return Scaffold(
-
       bottomNavigationBar: CurvedNavigationBar(
         animationCurve: Curves.bounceInOut,
         animationDuration: Duration(milliseconds: 200),
@@ -26,12 +27,11 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
         color: COLORS.colorPrimaryDark,
         buttonBackgroundColor: COLORS.colorPrimaryDark,
         height: 60,
-
         items: <Widget>[
           Icon(
             Icons.note_add,
             size: 20,
-            color:COLORS.colorAccent,
+            color: COLORS.colorAccent,
           ),
           Icon(
             Icons.home,
@@ -39,7 +39,7 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
             color: COLORS.colorAccent,
           ),
           Icon(
-            Icons.person_outline,
+            Icons.person,
             size: 20,
             color: COLORS.colorAccent,
           ),

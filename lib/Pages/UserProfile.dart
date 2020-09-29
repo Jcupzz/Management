@@ -127,7 +127,8 @@ class _UserProfileState extends State<UserProfile> {
                             fontSize: 20,
                             fontFamily: "Sans",
                             color: COLORS.colorText),
-                        fillColor: Colors.white,
+                        fillColor: COLORS.colorPrimaryDark,
+                        filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -158,50 +159,51 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: COLORS.colorPrimaryDark)),
-                      child: DropdownButton<String>(
-                        value: branch,
-                        isExpanded: true,
-                        isDense: false,
-                        icon: Icon(
-                          Icons.arrow_drop_down,
-                          color: COLORS.colorPrimaryDark,
-                        ),
-                        iconSize: 24,
-                        elevation: 16,
-                        underline: SizedBox(),
-                        dropdownColor: COLORS.colorPrimary,
-                        onChanged: (String newValue) {
-                          setState(() {
-                            branch = newValue;
-                          });
-                        },
-                        items: <String>[
-                          'Computer Science',
-                          'Electronics Engineering',
-                          'Mechanical Engineering',
-                          'Civil Engineering',
-                          'Electrical Engineering'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: COLORS.colorText,
-                                fontFamily: "Sans",
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: COLORS.colorPrimaryDark,
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: DropdownButton<String>(
+                          value: branch,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.arrow_drop_down,
+                            color: COLORS.colorPrimaryDark,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              branch = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'Computer Science',
+                            'Electronics Engineering',
+                            'Mechanical Engineering',
+                            'Civil Engineering',
+                            'Electrical Engineering'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: COLORS.colorText,
+                                  fontFamily: "Sans",
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                        // onChanged: null
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
                       ),
                     ),
                     Align(
@@ -218,53 +220,54 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: COLORS.colorPrimaryDark)),
-                      child: DropdownButton<String>(
-                        value: sem,
-                        isExpanded: true,
-                        isDense: false,
-                        icon: Icon(
-                          Icons.arrow_drop_down,
-                          color: COLORS.colorPrimaryDark,
-                        ),
-                        iconSize: 24,
-                        elevation: 16,
-                        underline: SizedBox(),
-                        dropdownColor: COLORS.colorPrimary,
-                        onChanged: (String newValue) {
-                          setState(() {
-                            sem = newValue;
-                          });
-                        },
-                        items: <String>[
-                          'S1',
-                          'S2',
-                          'S3',
-                          'S4',
-                          'S5',
-                          'S6',
-                          'S7',
-                          'S8'
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: COLORS.colorText,
-                                fontFamily: "Sans",
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: COLORS.colorPrimaryDark,
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: DropdownButton<String>(
+                          value: sem,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: COLORS.colorBackground,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              sem = newValue;
+                            });
+                          },
+                          items: <String>[
+                            'S1',
+                            'S2',
+                            'S3',
+                            'S4',
+                            'S5',
+                            'S6',
+                            'S7',
+                            'S8'
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: COLORS.colorText,
+                                  fontFamily: "Sans",
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                        // onChanged: null
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
                       ),
                     ),
                     Align(
@@ -281,47 +284,48 @@ class _UserProfileState extends State<UserProfile> {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      width: double.infinity,
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: COLORS.colorPrimaryDark)),
-                      child: DropdownButton<String>(
-                        value: scheme,
-                        isExpanded: true,
-                        isDense: false,
-                        icon: Icon(
-                          Icons.arrow_drop_down,
-                          color: COLORS.colorPrimaryDark,
-                        ),
-                        iconSize: 24,
-                        elevation: 16,
-                        underline: SizedBox(),
-                        dropdownColor: COLORS.colorPrimary,
-                        onChanged: (String newValue) {
-                          setState(() {
-                            scheme = newValue;
-                          });
-                        },
-                        items: <String>[
-                          '2015',
-                          '2019',
-                        ].map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: COLORS.colorText,
-                                fontFamily: "Sans",
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        color: COLORS.colorPrimaryDark,
+                        height: 50,
+                        width: double.infinity,
+                        padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                        child: DropdownButton<String>(
+                          value: scheme,
+                          isExpanded: true,
+                          isDense: false,
+                          icon: Icon(
+                            Icons.keyboard_arrow_down,
+                            color: COLORS.colorBackground,
+                          ),
+                          iconSize: 24,
+                          elevation: 16,
+                          underline: SizedBox(),
+                          dropdownColor: COLORS.colorPrimary,
+                          onChanged: (String newValue) {
+                            setState(() {
+                              scheme = newValue;
+                            });
+                          },
+                          items: <String>[
+                            '2015',
+                            '2019',
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(
+                                value,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: COLORS.colorText,
+                                  fontFamily: "Sans",
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList(),
-                        // onChanged: null
+                            );
+                          }).toList(),
+                          // onChanged: null
+                        ),
                       ),
                     ),
                     Align(
@@ -353,7 +357,8 @@ class _UserProfileState extends State<UserProfile> {
                             fontSize: 20,
                             fontFamily: "Sans",
                             color: COLORS.colorText),
-                        fillColor: Colors.white,
+                        filled: true,
+                        fillColor: COLORS.colorPrimaryDark,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:
@@ -399,7 +404,8 @@ class _UserProfileState extends State<UserProfile> {
                             fontSize: 20,
                             fontFamily: "Sans",
                             color: COLORS.colorText),
-                        fillColor: Colors.white,
+                        fillColor: COLORS.colorPrimaryDark,
+                        filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide:

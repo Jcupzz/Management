@@ -2,16 +2,10 @@ import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class MECH extends StatefulWidget {
-  @override
-  _MECHState createState() => _MECHState();
-}
-
-class _MECHState extends State<MECH> {
+class MECH extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Column(
         children: [
           Flexible(
@@ -28,14 +22,18 @@ class _MECHState extends State<MECH> {
                 child: Center(
                   child: Text(
                     "Mechanical Engineering",
-                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: "Sans",color: COLORS.colorText),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Sans",
+                        color: COLORS.colorText),
                     textAlign: TextAlign.center,
                   ),
                 ),
-              )
-          ),
+              )),
         ],
       ),
-    backgroundColor: COLORS.colorCard,);
+      backgroundColor: COLORS.colorCard,
+    );
   }
 }

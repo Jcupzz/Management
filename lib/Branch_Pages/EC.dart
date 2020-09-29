@@ -2,12 +2,7 @@ import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class EC extends StatefulWidget {
-  @override
-  _ECState createState() => _ECState();
-}
-
-class _ECState extends State<EC> {
+class EC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,3 +34,4 @@ class _ECState extends State<EC> {
     );
   }
 }
+

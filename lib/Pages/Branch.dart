@@ -37,23 +37,25 @@ class _BranchState extends State<Branch> {
             padding: const EdgeInsets.fromLTRB(0, 120, 0, 120),
             child: CarouselSlider(
                 items: cardList.map((card) {
-                  return Builder(builder: (BuildContext context) {
-                    return Container(
-                      height: double.infinity,
-                      width: MediaQuery.of(context).size.width,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
-                        elevation: 14,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20.0),
-                          child: card,
-                        ),
-                        color: COLORS.colorCard,
-                        // child: Lottie.asset(card,width: double.infinity,height: double.infinity),
+                    return ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        height: double.infinity,
+                        width: MediaQuery.of(context).size.width,
+                        child: card,
+                        //Card(
+                        //   shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(20.0)),
+                        //   elevation: 14,
+                        //   child: ClipRRect(
+                        //     borderRadius: BorderRadius.circular(20.0),
+                        //     child: card,
+                        //   ),
+                        //   color: COLORS.colorCard,
+                        //   // child: Lottie.asset(card,width: double.infinity,height: double.infinity),
+                        // ),
                       ),
                     );
-                  });
                 }).toList(),
                 options: CarouselOptions(
                   height: double.infinity,

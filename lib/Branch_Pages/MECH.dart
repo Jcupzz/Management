@@ -18,7 +18,7 @@ class MECH extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: COLORS.colorPrimaryDark,
+                color: Theme.of(context).primaryColorDark,
                 child: Center(
                   child: Text(
                     "Mechanical Engineering",
@@ -33,7 +33,7 @@ class MECH extends StatelessWidget {
               )),
         ],
       ),
-      backgroundColor: COLORS.colorCard,
+      backgroundColor: Theme.of(context).cardColor,
     );
   }
 }

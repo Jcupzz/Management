@@ -15,12 +15,13 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: COLORS.colorBackground,
+        backgroundColor: Theme.of(context).backgroundColor,
 
-        // appBar: AppBar(
-        //   title: Text("Profile"),
-        // ),
+// appBar: AppBar(
+//   title: Text("Profile"),
+// ),
 // =============================
+
 
         body: Center(
           child: SingleChildScrollView(
@@ -68,7 +69,7 @@ class _ProfileState extends State<Profile> {
                               margin: EdgeInsets.symmetric(
                                   horizontal: 20.0, vertical: 5.0),
                               clipBehavior: Clip.antiAlias,
-                              color: COLORS.colorCard,
+                              color: Theme.of(context).cardColor,
                               elevation: 5.0,
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
@@ -81,11 +82,10 @@ class _ProfileState extends State<Profile> {
                                           Text(
                                             "Semester",
                                             style: TextStyle(
-                                              color: COLORS.colorText,
-                                              fontSize: 22.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: "Sans"
-                                            ),
+                                                color: COLORS.colorText,
+                                                fontSize: 22.0,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: "Sans"),
                                           ),
                                           SizedBox(
                                             height: 5.0,
@@ -93,14 +93,19 @@ class _ProfileState extends State<Profile> {
 
                                           DropdownButton<String>(
                                             value: sem,
-                                            icon: Icon(Icons.arrow_drop_down,color: COLORS.colorPrimaryDark,),
+                                            icon: Icon(
+                                              Icons.arrow_drop_down,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark,
+                                            ),
                                             iconSize: 24,
                                             elevation: 16,
                                             style: TextStyle(
                                                 color: COLORS.colorText),
                                             underline: Container(
                                               height: 2,
-                                              color:COLORS.colorAccent,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                             ),
                                             onChanged: (String newValue) {
                                               setState(() {

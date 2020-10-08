@@ -1,4 +1,5 @@
 import 'package:cce/Pages/Login.dart';
+import 'package:cce/Pages/MyBottomNavigationBar.dart';
 import 'package:cce/Pages/home.dart';
 import 'package:cce/Theme/COLORS.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -40,7 +41,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // );
     } else {
       return Scaffold(
-        backgroundColor: COLORS.colorBackground,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -54,7 +55,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "Welcome to",
                           style: TextStyle(
-                              color: COLORS.colorPrimary,
+                              color: Theme.of(context).primaryColor,
                               fontSize: 45,
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold),
@@ -65,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Text(
                           "CCE Notes",
                           style: TextStyle(
-                              color: COLORS.colorPrimaryDark,
+                              color: Theme.of(context).primaryColorDark,
                               fontSize: 50,
                               fontStyle: FontStyle.normal,
                               fontWeight: FontWeight.bold),
@@ -85,22 +86,23 @@ class _RegisterPageState extends State<RegisterPage> {
                           _email = input;
                         },
                         style: TextStyle(color: Colors.white),
-                        cursorColor: COLORS.colorAccent,
+                        cursorColor: Theme.of(context).accentColor,
                         decoration: InputDecoration(
                           labelStyle: TextStyle(
-                            color: COLORS.colorPrimaryDark,
+                            color: Theme.of(context).primaryColorDark,
                           ),
                           labelText: "Email",
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                BorderSide(width: 1, color: COLORS.colorAccent),
+                            borderSide: BorderSide(
+                                width: 1, color: Theme.of(context).accentColor),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                                width: 1, color: COLORS.colorPrimaryDark),
+                                width: 1,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -122,24 +124,24 @@ class _RegisterPageState extends State<RegisterPage> {
                         onSaved: (input) {
                           _password = input;
                         },
-
                         obscureText: true,
                         style: TextStyle(color: Colors.white),
-                        cursorColor: COLORS.colorAccent,
+                        cursorColor: Theme.of(context).accentColor,
                         decoration: InputDecoration(
                           labelStyle: TextStyle(
-                            color: COLORS.colorPrimaryDark,
+                            color: Theme.of(context).primaryColorDark,
                           ),
                           labelText: "Password",
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                BorderSide(width: 1, color: COLORS.colorAccent),
+                            borderSide: BorderSide(
+                                width: 1, color: Theme.of(context).accentColor),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                                width: 1, color: COLORS.colorPrimaryDark),
+                                width: 1,
+                                color: Theme.of(context).primaryColorDark),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -156,9 +158,9 @@ class _RegisterPageState extends State<RegisterPage> {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           onPressed: () async {
-                             signIn();
+                            signIn();
                           },
-                          color: COLORS.colorPrimaryDark,
+                          color: Theme.of(context).primaryColorDark,
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                             child: Text("Sign up"),
@@ -168,11 +170,15 @@ class _RegisterPageState extends State<RegisterPage> {
                       FlatButton(
                           padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
                           },
                           child: Text(
                             "Already registered ? Login Here",
-                            style: TextStyle(color: COLORS.colorPrimaryDark),
+                            style: TextStyle(
+                                color: Theme.of(context).primaryColorDark),
                           )),
                     ],
                   ),
@@ -214,7 +220,8 @@ class _RegisterPageState extends State<RegisterPage> {
       // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
       print("\n\n\n\nthis shit ran\n\n\n\n");
       print(user.toString());
-      //Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => MyBottomNavigationBar()));
       print("\n\n\n\the fuck is it still here\n\n\n\n");
     } catch (e) {
       print(e.message);

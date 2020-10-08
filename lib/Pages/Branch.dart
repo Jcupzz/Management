@@ -14,7 +14,7 @@ class Branch extends StatefulWidget {
 }
 
 class _BranchState extends State<Branch> {
-  List cardList = [CS(),EC(),MECH(),CE(),EEE()];
+  List cardList = [CS(), EC(), MECH(), CE(), EEE()];
   List branchList = [
     "Computer Science",
     "Electronics Engineering",
@@ -23,39 +23,40 @@ class _BranchState extends State<Branch> {
     "Electrical Engineering"
   ];
   int _currentIndex;
-  int num=0;
+  int num = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: Text("CCE NOTES"),
-          backgroundColor: COLORS.colorPrimary,
+          backgroundColor: Theme.of(context).primaryColor,
         ),
-        backgroundColor: COLORS.colorBackground,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Center(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(0, 120, 0, 120),
             child: CarouselSlider(
                 items: cardList.map((card) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Container(
-                        height: double.infinity,
-                        width: MediaQuery.of(context).size.width,
-                        child: card,
-                        //Card(
-                        //   shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(20.0)),
-                        //   elevation: 14,
-                        //   child: ClipRRect(
-                        //     borderRadius: BorderRadius.circular(20.0),
-                        //     child: card,
-                        //   ),
-                        //   color: COLORS.colorCard,
-                        //   // child: Lottie.asset(card,width: double.infinity,height: double.infinity),
-                        // ),
-                      ),
-                    );
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Container(
+            
+                      height: double.infinity,
+                      width: MediaQuery.of(context).size.width,
+                      child: card,
+                      //Card(
+                      //   shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(20.0)),
+                      //   elevation: 14,
+                      //   child: ClipRRect(
+                      //     borderRadius: BorderRadius.circular(20.0),
+                      //     child: card,
+                      //   ),
+                      //   color: Theme.of(context).cardColor,
+                      //   // child: Lottie.asset(card,width: double.infinity,height: double.infinity),
+                      // ),
+                    ),
+                  );
                 }).toList(),
                 options: CarouselOptions(
                   height: double.infinity,
@@ -71,7 +72,7 @@ class _BranchState extends State<Branch> {
                   enlargeCenterPage: true,
                   onPageChanged: (index, reason) {
                     setState(() {
-                     _currentIndex = index;
+                      _currentIndex = index;
                     });
                   },
                   scrollDirection: Axis.horizontal,

@@ -7,20 +7,23 @@ class CS extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: COLORS.colorCard,
+      backgroundColor: Theme.of(context).cardColor,
       body: Column(
         children: [
           Flexible(
             flex: 15,
-            child: Lottie.asset("assets/lottie/cs_three.json",
-                width: double.infinity, height: double.infinity),
+            child: Lottie.asset(
+              "assets/lottie/cs_seven.json",
+              width: double.infinity,
+              height: double.infinity,
+            ),
           ),
           Flexible(
               flex: 3,
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: COLORS.colorPrimaryDark,
+                color: Theme.of(context).primaryColorDark,
                 child: Center(
                   child: Text(
                     "Computer Science\nEngineering",

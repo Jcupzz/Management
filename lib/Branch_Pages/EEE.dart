@@ -6,7 +6,7 @@ class EEE extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: COLORS.colorCard,
+      backgroundColor: Theme.of(context).cardColor,
       body: Column(
         children: [
           Flexible(
@@ -19,7 +19,7 @@ class EEE extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: COLORS.colorPrimaryDark,
+                color: Theme.of(context).primaryColorDark,
                 child: Center(
                   child: Text(
                     "Electrical Engineering",

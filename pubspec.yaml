@@ -27,12 +27,16 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  firebase_auth: ^0.16.1
+  firebase_auth: ^0.18.1+1
   shared_preferences: ^0.5.10
   cupertino_icons: ^0.1.3
   carousel_slider: ^2.2.1
   lottie: ^0.6.0
   curved_navigation_bar: ^0.3.3
+  theme_provider: ^0.4.0+1
+  image_picker: ^0.6.7+11
+  flutter_datetime_picker: ^1.4.0
+  cloud_firestore: ^0.14.1+2
 
 
 
@@ -86,11 +90,11 @@ flutter:
       fonts:
         - asset: assets/font/OpenSans-Light.ttf
   assets:
-    - assets/lottie/cs_three.json
     - assets/lottie/civil_one.json
     - assets/lottie/ec_lottie.json
     - assets/lottie/eee_lottie.json
     - assets/lottie/mech_lottie.json
     - assets/lottie/spider_lottie.json
+    - assets/lottie/cs_seven.json
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

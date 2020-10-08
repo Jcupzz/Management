@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: COLORS.colorBackground,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         "Hello there",
                         style: TextStyle(
-                            color: COLORS.colorPrimary,
+                            color: Theme.of(context).primaryColor,
                             fontSize: 55,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold),
@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         "Welcome Back",
                         style: TextStyle(
-                            color: COLORS.colorPrimaryDark,
+                            color: Theme.of(context).primaryColorDark,
                             fontSize: 42,
                             fontStyle: FontStyle.normal,
                             fontWeight: FontWeight.bold),
@@ -56,26 +56,27 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (val) => val.isEmpty || !(val.contains('@'))
                           ? 'Enter a valid email address'
                           : null,
-                      onSaved: (input){
+                      onSaved: (input) {
                         _email = input;
                       },
                       style: TextStyle(color: Colors.white),
-                      cursorColor: COLORS.colorAccent,
+                      cursorColor: Theme.of(context).accentColor,
                       decoration: InputDecoration(
                         labelStyle: TextStyle(
-                          color: COLORS.colorPrimaryDark,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                         labelText: "Email",
                         fillColor: Colors.white,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                          BorderSide(width: 1, color: COLORS.colorAccent),
+                          borderSide: BorderSide(
+                              width: 1, color: Theme.of(context).accentColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(
-                              width: 1, color: COLORS.colorPrimaryDark),
+                              width: 1,
+                              color: Theme.of(context).primaryColorDark),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -94,26 +95,27 @@ class _LoginPageState extends State<LoginPage> {
                       validator: (val) => val.isEmpty || val.length < 6
                           ? 'Enter a password greater than 6 characters'
                           : null,
-                      onSaved: (input){
+                      onSaved: (input) {
                         _password = input;
                       },
                       obscureText: true,
                       style: TextStyle(color: Colors.white),
-                      cursorColor: COLORS.colorAccent,
+                      cursorColor: Theme.of(context).accentColor,
                       decoration: InputDecoration(
                         labelStyle: TextStyle(
-                          color: COLORS.colorPrimaryDark,
+                          color: Theme.of(context).primaryColorDark,
                         ),
                         labelText: "Password",
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                          BorderSide(width: 1, color: COLORS.colorAccent),
+                          borderSide: BorderSide(
+                              width: 1, color: Theme.of(context).accentColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(
-                              width: 1, color: COLORS.colorPrimaryDark),
+                              width: 1,
+                              color: Theme.of(context).primaryColorDark),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -130,9 +132,9 @@ class _LoginPageState extends State<LoginPage> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20)),
                         onPressed: () async {
-                 //         loginIn();
+                          //         loginIn();
                         },
-                        color: COLORS.colorPrimaryDark,
+                        color: Theme.of(context).primaryColorDark,
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                           child: Text("Sign In"),

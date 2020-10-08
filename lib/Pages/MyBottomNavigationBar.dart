@@ -18,30 +18,30 @@ class _MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    HapticFeedback.mediumImpact();
+    HapticFeedback.heavyImpact();
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         animationCurve: Curves.bounceInOut,
         animationDuration: Duration(milliseconds: 200),
-        backgroundColor: COLORS.colorBackground,
-        color: COLORS.colorPrimaryDark,
-        buttonBackgroundColor: COLORS.colorPrimaryDark,
+        backgroundColor: Theme.of(context).backgroundColor,
+        color: Theme.of(context).primaryColorDark,
+        buttonBackgroundColor: Theme.of(context).primaryColorDark,
         height: 60,
         items: <Widget>[
           Icon(
             Icons.note_add,
             size: 20,
-            color: COLORS.colorAccent,
+            color: Theme.of(context).accentColor,
           ),
           Icon(
             Icons.home,
             size: 20,
-            color: COLORS.colorAccent,
+            color: Theme.of(context).accentColor,
           ),
           Icon(
             Icons.person,
             size: 20,
-            color: COLORS.colorAccent,
+            color: Theme.of(context).accentColor,
           ),
         ],
         onTap: (index) {

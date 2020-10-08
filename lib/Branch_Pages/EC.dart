@@ -6,7 +6,7 @@ class EC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: COLORS.colorCard,
+      backgroundColor: Theme.of(context).cardColor,
       body: Column(
         children: [
           Flexible(
@@ -19,19 +19,21 @@ class EC extends StatelessWidget {
               child: Container(
                 width: double.infinity,
                 height: double.infinity,
-                color: COLORS.colorPrimaryDark,
+                color: Theme.of(context).primaryColorDark,
                 child: Center(
                   child: Text(
                     "Electronics Engineering",
-                    style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,fontFamily: "Sans",color: COLORS.colorText),
+                    style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Sans",
+                        color: COLORS.colorText),
                     textAlign: TextAlign.center,
                   ),
                 ),
-              )
-          ),
+              )),
         ],
       ),
     );
   }
 }
-

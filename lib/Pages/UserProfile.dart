@@ -23,7 +23,7 @@ class _UserProfileState extends State<UserProfile> {
         ? Scaffold(
             appBar: AppBar(
               elevation: 0,
-              backgroundColor: COLORS.colorPrimary,
+              backgroundColor: Theme.of(context).primaryColor,
               title: Text("Edit Profile"),
               centerTitle: true,
               leading: IconButton(
@@ -57,7 +57,7 @@ class _UserProfileState extends State<UserProfile> {
                     }),
               ],
             ),
-            backgroundColor: COLORS.colorBackground,
+            backgroundColor: Theme.of(context).backgroundColor,
             body: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
@@ -119,7 +119,7 @@ class _UserProfileState extends State<UserProfile> {
                         _name = input;
                       },
                       style: TextStyle(color: Colors.white),
-                      cursorColor: COLORS.colorAccent,
+                      cursorColor: Theme.of(context).accentColor,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         hintText: "Name",
@@ -127,17 +127,18 @@ class _UserProfileState extends State<UserProfile> {
                             fontSize: 20,
                             fontFamily: "Sans",
                             color: COLORS.colorText),
-                        fillColor: COLORS.colorPrimaryDark,
+                        fillColor: Theme.of(context).primaryColorDark,
                         filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 1, color: COLORS.colorAccent),
+                          borderSide: BorderSide(
+                              width: 1, color: Theme.of(context).accentColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(
-                              width: 1, color: COLORS.colorPrimaryDark),
+                              width: 1,
+                              color: Theme.of(context).primaryColorDark),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -162,7 +163,7 @@ class _UserProfileState extends State<UserProfile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
-                        color: COLORS.colorPrimaryDark,
+                        color: Theme.of(context).primaryColorDark,
                         height: 50,
                         width: double.infinity,
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -172,12 +173,12 @@ class _UserProfileState extends State<UserProfile> {
                           isDense: false,
                           icon: Icon(
                             Icons.arrow_drop_down,
-                            color: COLORS.colorPrimaryDark,
+                            color: Theme.of(context).primaryColorDark,
                           ),
                           iconSize: 24,
                           elevation: 16,
                           underline: SizedBox(),
-                          dropdownColor: COLORS.colorPrimary,
+                          dropdownColor: Theme.of(context).primaryColor,
                           onChanged: (String newValue) {
                             setState(() {
                               branch = newValue;
@@ -223,7 +224,7 @@ class _UserProfileState extends State<UserProfile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
-                        color: COLORS.colorPrimaryDark,
+                        color: Theme.of(context).primaryColorDark,
                         height: 50,
                         width: double.infinity,
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -233,12 +234,12 @@ class _UserProfileState extends State<UserProfile> {
                           isDense: false,
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            color: COLORS.colorBackground,
+                            color: Theme.of(context).backgroundColor,
                           ),
                           iconSize: 24,
                           elevation: 16,
                           underline: SizedBox(),
-                          dropdownColor: COLORS.colorPrimary,
+                          dropdownColor: Theme.of(context).primaryColor,
                           onChanged: (String newValue) {
                             setState(() {
                               sem = newValue;
@@ -287,7 +288,7 @@ class _UserProfileState extends State<UserProfile> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
-                        color: COLORS.colorPrimaryDark,
+                        color: Theme.of(context).primaryColorDark,
                         height: 50,
                         width: double.infinity,
                         padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
@@ -297,12 +298,12 @@ class _UserProfileState extends State<UserProfile> {
                           isDense: false,
                           icon: Icon(
                             Icons.keyboard_arrow_down,
-                            color: COLORS.colorBackground,
+                            color: Theme.of(context).backgroundColor,
                           ),
                           iconSize: 24,
                           elevation: 16,
                           underline: SizedBox(),
-                          dropdownColor: COLORS.colorPrimary,
+                          dropdownColor: Theme.of(context).primaryColor,
                           onChanged: (String newValue) {
                             setState(() {
                               scheme = newValue;
@@ -349,7 +350,7 @@ class _UserProfileState extends State<UserProfile> {
                         _id = input;
                       },
                       style: TextStyle(color: Colors.white),
-                      cursorColor: COLORS.colorAccent,
+                      cursorColor: Theme.of(context).accentColor,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         hintText: "ID",
@@ -358,16 +359,17 @@ class _UserProfileState extends State<UserProfile> {
                             fontFamily: "Sans",
                             color: COLORS.colorText),
                         filled: true,
-                        fillColor: COLORS.colorPrimaryDark,
+                        fillColor: Theme.of(context).primaryColorDark,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 1, color: COLORS.colorAccent),
+                          borderSide: BorderSide(
+                              width: 1, color: Theme.of(context).accentColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(
-                              width: 1, color: COLORS.colorPrimaryDark),
+                              width: 1,
+                              color: Theme.of(context).primaryColorDark),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -396,7 +398,7 @@ class _UserProfileState extends State<UserProfile> {
                         _phone = input;
                       },
                       style: TextStyle(color: Colors.white),
-                      cursorColor: COLORS.colorAccent,
+                      cursorColor: Theme.of(context).accentColor,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                         hintText: "Phone",
@@ -404,17 +406,18 @@ class _UserProfileState extends State<UserProfile> {
                             fontSize: 20,
                             fontFamily: "Sans",
                             color: COLORS.colorText),
-                        fillColor: COLORS.colorPrimaryDark,
+                        fillColor: Theme.of(context).primaryColorDark,
                         filled: true,
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              BorderSide(width: 1, color: COLORS.colorAccent),
+                          borderSide: BorderSide(
+                              width: 1, color: Theme.of(context).accentColor),
                         ),
                         enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: BorderSide(
-                              width: 1, color: COLORS.colorPrimaryDark),
+                              width: 1,
+                              color: Theme.of(context).primaryColorDark),
                         ),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -428,7 +431,7 @@ class _UserProfileState extends State<UserProfile> {
             ),
           )
         : Scaffold(
-            backgroundColor: COLORS.colorBackground,
+            backgroundColor: Theme.of(context).backgroundColor,
             floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
             floatingActionButton: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
@@ -436,7 +439,7 @@ class _UserProfileState extends State<UserProfile> {
                     height: 60,
                     width: 60,
                     child: RaisedButton(
-                      color: COLORS.colorAccent,
+                      color: Theme.of(context).accentColor,
                       onPressed: () {
                         setState(() {
                           iseditable = true;
@@ -463,7 +466,7 @@ class _UserProfileState extends State<UserProfile> {
                                   topLeft: Radius.circular(20),
                                   topRight: Radius.circular(20)),
                               child: Container(
-                                color: COLORS.colorPrimaryDark,
+                                color: Theme.of(context).primaryColorDark,
                                 width: MediaQuery.of(context).size.width,
                                 height: 80,
                               ),
@@ -489,7 +492,7 @@ class _UserProfileState extends State<UserProfile> {
                           child: Container(
                             height: 150,
                             width: MediaQuery.of(context).size.width,
-                            color: COLORS.colorPrimaryDark,
+                            color: Theme.of(context).primaryColorDark,
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                               child: Column(
@@ -594,7 +597,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Container(
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: COLORS.colorPrimaryDark),
+                              color: Theme.of(context).primaryColorDark),
                           width: MediaQuery.of(context).size.width,
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -605,7 +608,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(
                                   Icons.person,
                                   size: 35,
-                                  color: COLORS.colorBackground,
+                                  color: Theme.of(context).backgroundColor,
                                 ),
                                 title: Text(
                                   "ID",
@@ -621,7 +624,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(
                                   Icons.alternate_email,
                                   size: 35,
-                                  color: COLORS.colorBackground,
+                                  color: Theme.of(context).backgroundColor,
                                 ),
                                 title: Text(
                                   "Email",
@@ -637,7 +640,7 @@ class _UserProfileState extends State<UserProfile> {
                                 leading: Icon(
                                   Icons.phone,
                                   size: 35,
-                                  color: COLORS.colorBackground,
+                                  color: Theme.of(context).backgroundColor,
                                 ),
                                 title: Text(
                                   "Phone",

@@ -1,5 +1,4 @@
 import 'package:cce/Constants/MyTextStyle.dart';
-import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -106,7 +105,7 @@ class _UserProfileState extends State<UserProfile> {
                           "Name",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
+                          
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -126,7 +125,7 @@ class _UserProfileState extends State<UserProfile> {
                         hintStyle: TextStyle(
                             fontSize: 20,
                             fontFamily: "Sans",
-                            color: COLORS.colorText),
+                          ),
                         fillColor: Theme.of(context).primaryColorDark,
                         filled: true,
                         focusedBorder: OutlineInputBorder(
@@ -154,7 +153,7 @@ class _UserProfileState extends State<UserProfile> {
                           "Branch",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
+                          
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -197,8 +196,7 @@ class _UserProfileState extends State<UserProfile> {
                                 value,
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: COLORS.colorText,
-                                  fontFamily: "Sans",
+                                                            fontFamily: "Sans",
                                 ),
                               ),
                             );
@@ -215,7 +213,7 @@ class _UserProfileState extends State<UserProfile> {
                           "Semester",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
+                          
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -261,7 +259,7 @@ class _UserProfileState extends State<UserProfile> {
                                 value,
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: COLORS.colorText,
+                          
                                   fontFamily: "Sans",
                                 ),
                               ),
@@ -279,7 +277,7 @@ class _UserProfileState extends State<UserProfile> {
                           "Scheme",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
+                          
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -319,8 +317,7 @@ class _UserProfileState extends State<UserProfile> {
                                 value,
                                 style: TextStyle(
                                   fontSize: 20,
-                                  color: COLORS.colorText,
-                                  fontFamily: "Sans",
+                                                           fontFamily: "Sans",
                                 ),
                               ),
                             );
@@ -337,7 +334,7 @@ class _UserProfileState extends State<UserProfile> {
                           "ID",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
+                          
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -357,7 +354,7 @@ class _UserProfileState extends State<UserProfile> {
                         hintStyle: TextStyle(
                             fontSize: 20,
                             fontFamily: "Sans",
-                            color: COLORS.colorText),
+                          ),
                         filled: true,
                         fillColor: Theme.of(context).primaryColorDark,
                         focusedBorder: OutlineInputBorder(
@@ -385,7 +382,6 @@ class _UserProfileState extends State<UserProfile> {
                           "Phone",
                           style: TextStyle(
                               fontSize: 15,
-                              color: COLORS.colorText,
                               fontWeight: FontWeight.bold),
                           textAlign: TextAlign.left,
                         ),
@@ -405,7 +401,7 @@ class _UserProfileState extends State<UserProfile> {
                         hintStyle: TextStyle(
                             fontSize: 20,
                             fontFamily: "Sans",
-                            color: COLORS.colorText),
+                          ),
                         fillColor: Theme.of(context).primaryColorDark,
                         filled: true,
                         focusedBorder: OutlineInputBorder(
@@ -501,7 +497,7 @@ class _UserProfileState extends State<UserProfile> {
                                     "Annon Here",
                                     style: TextStyle(
                                         fontSize: 20,
-                                        color: COLORS.colorText,
+                          
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "Sans"),
                                     textAlign: TextAlign.center,
@@ -520,8 +516,7 @@ class _UserProfileState extends State<UserProfile> {
                                               "Branch",
                                               style: TextStyle(
                                                   fontSize: 18,
-                                                  color: COLORS.colorText,
-                                                  fontWeight: FontWeight.bold,
+                                 fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),
                                             SizedBox(
@@ -531,7 +526,6 @@ class _UserProfileState extends State<UserProfile> {
                                               "CSE",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color: COLORS.colorText,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),
@@ -543,7 +537,6 @@ class _UserProfileState extends State<UserProfile> {
                                               "Semester",
                                               style: TextStyle(
                                                   fontSize: 18,
-                                                  color: COLORS.colorText,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),
@@ -554,7 +547,6 @@ class _UserProfileState extends State<UserProfile> {
                                               "S1",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color: COLORS.colorText,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),
@@ -566,7 +558,6 @@ class _UserProfileState extends State<UserProfile> {
                                               "Scheme",
                                               style: TextStyle(
                                                   fontSize: 18,
-                                                  color: COLORS.colorText,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),
@@ -577,7 +568,6 @@ class _UserProfileState extends State<UserProfile> {
                                               "2015",
                                               style: TextStyle(
                                                   fontSize: 15,
-                                                  color: COLORS.colorText,
                                                   fontWeight: FontWeight.bold,
                                                   fontFamily: "Sans"),
                                             ),

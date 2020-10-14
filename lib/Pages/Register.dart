@@ -1,7 +1,6 @@
 import 'package:cce/Pages/Login.dart';
 import 'package:cce/Pages/MyBottomNavigationBar.dart';
 import 'package:cce/Pages/home.dart';
-import 'package:cce/Theme/COLORS.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -89,20 +88,19 @@ class _RegisterPageState extends State<RegisterPage> {
                         cursorColor: Theme.of(context).accentColor,
                         decoration: InputDecoration(
                           labelStyle: TextStyle(
-                            color: Theme.of(context).primaryColorDark,
+                            color:Theme.of(context).primaryColorDark,
                           ),
                           labelText: "Email",
                           fillColor: Colors.white,
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                                width: 1, color: Theme.of(context).accentColor),
+                            borderSide:
+                                BorderSide(width: 1, color: Theme.of(context).accentColor),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                                width: 1,
-                                color: Theme.of(context).primaryColorDark),
+                                width: 1, color: Theme.of(context).primaryColor),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -134,14 +132,13 @@ class _RegisterPageState extends State<RegisterPage> {
                           labelText: "Password",
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
-                            borderSide: BorderSide(
-                                width: 1, color: Theme.of(context).accentColor),
+                            borderSide:
+                                BorderSide(width: 1, color: Theme.of(context).accentColor),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                             borderSide: BorderSide(
-                                width: 1,
-                                color: Theme.of(context).primaryColorDark),
+                                width: 1, color:Theme.of(context).primaryColorDark),
                           ),
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -159,8 +156,10 @@ class _RegisterPageState extends State<RegisterPage> {
                               borderRadius: BorderRadius.circular(20)),
                           onPressed: () async {
                             signIn();
+
+                            print("\n\n\n\n\n\n logged in ");
                           },
-                          color: Theme.of(context).primaryColorDark,
+                          color:Theme.of(context).primaryColorDark,
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
                             child: Text("Sign up"),
@@ -177,8 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           },
                           child: Text(
                             "Already registered ? Login Here",
-                            style: TextStyle(
-                                color: Theme.of(context).primaryColorDark),
+                            style: TextStyle(color: Theme.of(context).primaryColorDark),
                           )),
                     ],
                   ),
@@ -196,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
     //login
     formVal.save();
     try {
-      final FirebaseUser user = (await _auth.signInWithEmailAndPassword(
+      final user = (await _auth.signInWithEmailAndPassword(
         email: "BackDoor@Login.com",
         password: "BackDoor@Login.com",
       ))
@@ -212,6 +210,9 @@ class _RegisterPageState extends State<RegisterPage> {
           print(user.email);
         });
       } else {
+        print("logged in sin in ");
+        print("\n\n\n\n\n\n logged in sign in");
+
         setState(() {
           success = false;
         });
@@ -220,8 +221,7 @@ class _RegisterPageState extends State<RegisterPage> {
       // Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
       print("\n\n\n\nthis shit ran\n\n\n\n");
       print(user.toString());
-      Navigator.push(context,
-          MaterialPageRoute(builder: (context) => MyBottomNavigationBar()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyBottomNavigationBar()));
       print("\n\n\n\the fuck is it still here\n\n\n\n");
     } catch (e) {
       print(e.message);

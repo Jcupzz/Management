@@ -1,4 +1,3 @@
-import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -27,7 +26,7 @@ class EC extends StatelessWidget {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontFamily: "Sans",
-                        color: COLORS.colorText),
+                        ),
                     textAlign: TextAlign.center,
                   ),
                 ),

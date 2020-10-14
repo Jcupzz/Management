@@ -1,8 +1,6 @@
 import 'package:cce/Pages/Branch.dart';
 import 'package:cce/Pages/UserProfile.dart';
 import 'package:cce/Pages/home.dart';
-import 'package:cce/Pages/profile.dart';
-import 'package:cce/Theme/COLORS.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

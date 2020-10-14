@@ -1,5 +1,6 @@
 import 'dart:io';
-
+import 'package:cce/Constants/Loading.dart';
+import 'package:cce/Pages/home.dart';
 import 'package:cce/Post_Feed_Pages/DatabaseServices_Post.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,10 @@ class _Add_PostState extends State<Add_Post> {
   String caption; // String to store caption
   int pcdd_val = 0; //post_category_drop_down_value
   File _image; // image post location in device
-  dynamic remainder_time; //
+  dynamic remainder_time; // remainder time
+  DatabaseServices_Post databaseServices_Post = new DatabaseServices_Post();
+  HomeScreen homeScreen = new HomeScreen();
+
   //
 
   Future<void> getImage() async {
@@ -151,8 +155,7 @@ class _Add_PostState extends State<Add_Post> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    onPressed: (){
-
+                    onPressed: () {
                       //
 
                       DatePicker.showDateTimePicker(
@@ -167,16 +170,14 @@ class _Add_PostState extends State<Add_Post> {
                           remainder_time = confirmed_date;
                           print("date successfully: $remainder_time");
                         },
-                        currentTime: DateTime(
-                            DateTime.now().year, DateTime.now().month, DateTime.now().day, 12, 0),
+                        currentTime: DateTime(DateTime.now().year,
+                            DateTime.now().month, DateTime.now().day, 12, 0),
                         minTime: DateTime(2020, 10, 1),
                         maxTime: DateTime(2024, 12, 31),
                       );
 
-
                       //
-
-                      },
+                    },
                     color: Colors.grey[600],
                     child: Text("Set Remainder"))),
 
@@ -192,24 +193,37 @@ class _Add_PostState extends State<Add_Post> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    onPressed: () {
-                      //
-                      if(_image!=null&&caption!=null&&remainder_time!=null)
-                        {
-                      DatabaseServices_Post databaseServices_Post =  DatabaseServices_Post(caption,remainder_time,DateTime.now());
-                           print("reached here at last");
-                      databaseServices_Post.upload_post();
-                        }
+                    onPressed: () async {
+                      // TODO : CircularProgressIndicator
+                      
+                      Navigator.pop(context);
+                      if (_image != null &&
+                          caption != null &&
+                          remainder_time != null) {
+                        print("reached here at last");
+                        await databaseServices_Post
+                            .upload_post(
+                                caption, remainder_time, DateTime.now(), _image)
+                            .then((value) {
+                          if (value == true) {
+                            print('reached navigator!thank you god!!!');
+                          } else {
+                            print("Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                          }
+                        });
+                      }
                     },
                     color: Colors.grey[600],
                     child: Text("Post"))),
-            SizedBox(height: 30,)
+            SizedBox(
+              height: 30,
+            )
           ],
         ),
       ),
     );
   }
 
-  setRemainder() {
-  }
+  setRemainder() {}
+
 }

@@ -1,49 +1,47 @@
+import 'package:cce/main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/material.dart';
 
-class DatabaseServices_Post{
-  String user_name;
-  String user_id;
-  String image_link;//firebase storage link
-  String _caption;//caption of the post
-  DateTime _remainder_time;//remainder time of the post
-  DateTime _posted_time;//Time of posting
-
+class DatabaseServices_Post {
   FirebaseFirestore db = FirebaseFirestore.instance;
   CollectionReference C_Ref = FirebaseFirestore.instance.collection("Post");
+  StorageReference _storageReference;
+
+  bool upload_checker = false;
 
   
-  
-  DatabaseServices_Post(String _caption,DateTime _remainder_time,DateTime _posted_time)
-  {
-    this._caption = _caption;
-    this._remainder_time = _remainder_time;
-    this._posted_time = _posted_time;
-  }
 
-  String get caption => _caption;
+  Future<bool> upload_post(String caption, DateTime remainder_time,
+      DateTime posted_time, File image) async {
+    _storageReference = FirebaseStorage.instance
+        .ref()
+        .child("Post")
+        .child("$userId")
+        .child('${DateTime.now().millisecondsSinceEpoch}');
+    StorageUploadTask storageUploadTask = _storageReference.putFile(image);
+    storageUploadTask.events.listen((event) {
+      
+    });
+    var url = await (await storageUploadTask.onComplete).ref.getDownloadURL();
 
-  set caption(String value) {
-    _caption = value;
-  }
+    if (url != null) {
+      await C_Ref.add({
+        'caption': caption,
+        'remainder_time': remainder_time,
+        'posted_time': posted_time,
+        'url': url,
+      }).then((value) {
+        print('Added ' + value.toString());
+        upload_checker = true;
+      }).catchError((onError) {
+        print("Failed $onError");
+        upload_checker = false;
+      });
+    }
 
-
-  DateTime get remainder_time => _remainder_time;
-
-  DateTime get posted_time => _posted_time;
-
-  set posted_time(DateTime value) {
-    _posted_time = value;
-  }
-
-  set remainder_time(DateTime value) {
-    _remainder_time = value;
-  }
-  Future<void> upload_post() async
-  {
-    await C_Ref.add({
-      'caption': _caption,
-      'remainder_time':_remainder_time,
-      'posted_time':_posted_time,
-    }).then((value) => print('added')).catchError((onError)=>print("Failed $onError"));
+    return upload_checker;
   }
 }

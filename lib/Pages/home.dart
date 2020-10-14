@@ -1,12 +1,13 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cce/Pages/Register.dart';
-import 'package:cce/Pages/profile.dart';
+import 'package:cce/Pages/UserProfile.dart';
 import 'package:cce/Post_Feed_Pages/Add_Post.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cce/Post_Feed_Pages/Add_Post.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_provider/theme_provider.dart';
-
 import '../main.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,8 +20,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   String theme_switcher_text = 'Dark Mode';
+  Future<List<DocumentSnapshot>> _future;
+  Query C_Ref = FirebaseFirestore.instance
+      .collection("Post")
+      .orderBy('posted_time', descending: true);
 
   Future<Null> getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -64,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onDetailsPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Profile()),
+                    MaterialPageRoute(builder: (context) => UserProfile()),
                   );
                 },
                 accountName: Text("Annon "),
@@ -141,7 +145,79 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: Container(),
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          child: StreamBuilder<QuerySnapshot>(
+            stream: C_Ref.snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasError) {
+                return Text('Something went wrong');
+              }
+
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text("Loading");
+              }
+              return new ListView(
+                children: snapshot.data.docs.map((DocumentSnapshot document) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Divider(
+                        color: Colors.grey[600],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+                        child: Text("Username"),
+                      ),
+                      Align(
+                        alignment: Alignment.center,
+                        child: CachedNetworkImage(
+                          imageUrl: document.data()['url'],
+                          placeholder: ((context, s) => Center(
+                                child: CircularProgressIndicator(),
+                              )),
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.width,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                        IconButton(
+                          icon: Icon(Icons.favorite_border_rounded),
+                          color: Colors.grey[400],
+                          onPressed: () {},
+                        ),
+                        IconButton(
+                          alignment: Alignment.centerRight,
+                          icon: Icon(Icons.alarm_add_rounded),
+                          color: Colors.grey[400],
+                          onPressed: () {},
+                        ),
+                      ]),
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(document.data()['caption']),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        child: Text(
+                          format_posted_time(document.data()['posted_time']),
+                          style: TextStyle(fontSize: 12),
+                        ),
+                  
+                      ),
+                    ],
+                  );
+                }).toList(),
+              );
+            },
+          )),
     );
   }
 
@@ -167,4 +243,38 @@ class _HomeScreenState extends State<HomeScreen> {
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext ctx) => RegisterPage()));
   }
+
+  String format_posted_time(Timestamp posted_time) {
+    DateTime postedDate =
+        posted_time.toDate(); //Converted timestamp to DateTime
+
+    bool numericDates = true;
+
+    final date2 = DateTime.now();
+
+    final difference = date2.difference(postedDate);
+
+    if (difference.inDays > 8) {
+      return 'More than 8 days'; // TODO : Should change more than 8 days
+    } else if ((difference.inDays / 7).floor() >= 1) {
+      return (numericDates) ? '1 week ago' : 'Last week';
+    } else if (difference.inDays >= 2) {
+      return '${difference.inDays} days ago';
+    } else if (difference.inDays >= 1) {
+      return (numericDates) ? '1 day ago' : 'Yesterday';
+    } else if (difference.inHours >= 2) {
+      return '${difference.inHours} hours ago';
+    } else if (difference.inHours >= 1) {
+      return (numericDates) ? '1 hour ago' : 'An hour ago';
+    } else if (difference.inMinutes >= 2) {
+      return '${difference.inMinutes} minutes ago';
+    } else if (difference.inMinutes >= 1) {
+      return (numericDates) ? '1 minute ago' : 'A minute ago';
+    } else if (difference.inSeconds >= 3) {
+      return '${difference.inSeconds} seconds ago';
+    } else {
+      return 'Just now';
+    }
+  }
+
 }

@@ -4,7 +4,6 @@ import 'package:cce/Branch_Pages/CS.dart';
 import 'package:cce/Branch_Pages/EC.dart';
 import 'package:cce/Branch_Pages/EEE.dart';
 import 'package:cce/Branch_Pages/MECH.dart';
-import 'package:cce/Theme/COLORS.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

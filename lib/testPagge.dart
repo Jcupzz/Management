@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Constants/MyTextStyle.dart';
-import 'Theme/COLORS.dart';
 
 class TestPage extends StatefulWidget {
   @override

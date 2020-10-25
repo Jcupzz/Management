@@ -2,12 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cce/Pages/Register.dart';
 import 'package:cce/Pages/UserProfile.dart';
 import 'package:cce/Post_Feed_Pages/Add_Post.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cce/Post_Feed_Pages/Add_Post.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_provider/theme_provider.dart';
+
 import '../main.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -25,6 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Query C_Ref = FirebaseFirestore.instance
       .collection("Post")
       .orderBy('posted_time', descending: true);
+  //
+
+  ScrollController controller = ScrollController();
+  bool closeTopContainer = false;
+  double topContainer = 0;
+
+  //
 
   Future<Null> getStringValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -46,10 +53,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
     setState(() {});
     super.initState();
+
+    //
+
+    controller.addListener(() {
+
+      double value = controller.offset/119;
+
+      setState(() {
+        topContainer = value;
+        closeTopContainer = controller.offset > 50;
+      });
+    });
+
+    //
   }
 
   @override
   Widget build(BuildContext context) {
+    final double categoryHeight =
+        MediaQuery.of(context).size.height * 0.30 - 50;
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       drawer: Drawer(
@@ -145,79 +168,218 @@ class _HomeScreenState extends State<HomeScreen> {
           )
         ],
       ),
-      body: Container(
-          width: MediaQuery.of(context).size.width,
-          child: StreamBuilder<QuerySnapshot>(
-            stream: C_Ref.snapshots(),
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Something went wrong');
-              }
+      body:
 
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text("Loading");
-              }
-              return new ListView(
-                children: snapshot.data.docs.map((DocumentSnapshot document) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Divider(
-                        color: Colors.grey[600],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
-                        child: Text("Username"),
-                      ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: CachedNetworkImage(
-                          imageUrl: document.data()['url'],
-                          placeholder: ((context, s) => Center(
-                                child: CircularProgressIndicator(),
-                              )),
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.width,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                        IconButton(
-                          icon: Icon(Icons.favorite_border_rounded),
-                          color: Colors.grey[400],
-                          onPressed: () {},
-                        ),
-                        IconButton(
-                          alignment: Alignment.centerRight,
-                          icon: Icon(Icons.alarm_add_rounded),
-                          color: Colors.grey[400],
-                          onPressed: () {},
-                        ),
-                      ]),
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(document.data()['caption']),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-                        child: Text(
-                          format_posted_time(document.data()['posted_time']),
-                          style: TextStyle(fontSize: 12),
-                        ),
-                  
-                      ),
-                    ],
-                  );
-                }).toList(),
-              );
-            },
-          )),
+
+
+      // Column(
+      //   mainAxisSize: MainAxisSize.max,
+      //   mainAxisAlignment: MainAxisAlignment.center,
+      //   children: [
+      //     //
+      //     Container(
+      //       margin: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      //       child: FittedBox(
+      //         fit: BoxFit.fill,
+      //         alignment: Alignment.topCenter,
+      //         child: Row(
+      //           children: <Widget>[
+      //             Container(
+      //               width: 150,
+      //               margin: EdgeInsets.only(right: 20),
+      //               height: categoryHeight,
+      //               decoration: BoxDecoration(
+      //                   color: Colors.orange.shade400,
+      //                   borderRadius:
+      //                       BorderRadius.all(Radius.circular(20.0))),
+      //               child: Padding(
+      //                 padding: const EdgeInsets.all(12.0),
+      //                 child: Column(
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   children: <Widget>[
+      //                     Text(
+      //                       "Most\nFavorites",
+      //                       style: TextStyle(
+      //                           fontSize: 25,
+      //                           color: Colors.white,
+      //                           fontWeight: FontWeight.bold),
+      //                     ),
+      //                     SizedBox(
+      //                       height: 10,
+      //                     ),
+      //                     Text(
+      //                       "20 Items",
+      //                       style:
+      //                           TextStyle(fontSize: 16, color: Colors.white),
+      //                     ),
+      //                   ],
+      //                 ),
+      //               ),
+      //             ),
+      //             Container(
+      //               width: 150,
+      //               margin: EdgeInsets.only(right: 20),
+      //               height: categoryHeight,
+      //               decoration: BoxDecoration(
+      //                   color: Colors.blue.shade400,
+      //                   borderRadius:
+      //                       BorderRadius.all(Radius.circular(20.0))),
+      //               child: Container(
+      //                 child: Padding(
+      //                   padding: const EdgeInsets.all(12.0),
+      //                   child: Column(
+      //                     crossAxisAlignment: CrossAxisAlignment.start,
+      //                     children: <Widget>[
+      //                       Text(
+      //                         "Newest",
+      //                         style: TextStyle(
+      //                             fontSize: 25,
+      //                             color: Colors.white,
+      //                             fontWeight: FontWeight.bold),
+      //                       ),
+      //                       SizedBox(
+      //                         height: 10,
+      //                       ),
+      //                       Text(
+      //                         "20 Items",
+      //                         style: TextStyle(
+      //                             fontSize: 16, color: Colors.white),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //             Container(
+      //               width: 150,
+      //               margin: EdgeInsets.only(right: 20),
+      //               height: categoryHeight,
+      //               decoration: BoxDecoration(
+      //                   color: Colors.lightBlueAccent.shade400,
+      //                   borderRadius:
+      //                       BorderRadius.all(Radius.circular(20.0))),
+      //               child: Padding(
+      //                 padding: const EdgeInsets.all(12.0),
+      //                 child: Column(
+      //                   crossAxisAlignment: CrossAxisAlignment.start,
+      //                   children: <Widget>[
+      //                     Text(
+      //                       "Super\nSaving",
+      //                       style: TextStyle(
+      //                           fontSize: 25,
+      //                           color: Colors.white,
+      //                           fontWeight: FontWeight.bold),
+      //                     ),
+      //                     SizedBox(
+      //                       height: 10,
+      //                     ),
+      //                     Text(
+      //                       "20 Items",
+      //                       style:
+      //                           TextStyle(fontSize: 16, color: Colors.white),
+      //                     ),
+      //                   ],
+      //                 ),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //
+      //     //
+      //     Expanded(
+      //
+      //       child: Container(
+      //           height: MediaQuery.of(context).size.height,
+      //           width: MediaQuery.of(context).size.width,
+      //           child: StreamBuilder<QuerySnapshot>(
+      //             stream: C_Ref.snapshots(),
+      //
+      //             builder: (BuildContext context,
+      //                 AsyncSnapshot<QuerySnapshot> snapshot) {
+      //               if (snapshot.hasError) {
+      //                 return Text('Something went wrong');
+      //               }
+      //
+      //               if (snapshot.connectionState == ConnectionState.waiting) {
+      //                 return Text("Loading");
+      //               }
+      //               // double scale = 1.0;
+      //               // if (topContainer > 0.5) {
+      //               //   scale = index + 0.5 - topContainer;
+      //               //   if (scale < 0) {
+      //               //     scale = 0;
+      //               //   } else if (scale > 1) {
+      //               //     scale = 1;
+      //               //   }
+      //               // }
+      //
+      //               return new ListView(
+      //                 controller: controller,
+      //                 children:
+      //                     snapshot.data.docs.map((DocumentSnapshot document) {
+      //                   return Column(
+      //                     mainAxisAlignment: MainAxisAlignment.center,
+      //                     crossAxisAlignment: CrossAxisAlignment.start,
+      //                     children: [
+      //                       Divider(
+      //                         color: Colors.grey[600],
+      //                       ),
+      //                       Padding(
+      //                         padding: const EdgeInsets.fromLTRB(20, 10, 20, 20),
+      //                         child: Text("Username"),
+      //                       ),
+      //                       Align(
+      //                         alignment: Alignment.center,
+      //                         child: CachedNetworkImage(
+      //                           imageUrl: document.data()['url'],
+      //                           placeholder: ((context, s) => Center(
+      //                                 child: CircularProgressIndicator(),
+      //                               )),
+      //                           width: MediaQuery.of(context).size.width,
+      //                           height: MediaQuery.of(context).size.width,
+      //                           fit: BoxFit.cover,
+      //                         ),
+      //                       ),
+      //                       Row(
+      //                           mainAxisSize: MainAxisSize.max,
+      //                           crossAxisAlignment: CrossAxisAlignment.center,
+      //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //                           children: [
+      //                             IconButton(
+      //                               icon: Icon(Icons.favorite_border_rounded),
+      //                               color: Colors.grey[400],
+      //                               onPressed: () {},
+      //                             ),
+      //                             IconButton(
+      //                               alignment: Alignment.centerRight,
+      //                               icon: Icon(Icons.alarm_add_rounded),
+      //                               color: Colors.grey[400],
+      //                               onPressed: () {},
+      //                             ),
+      //                           ]),
+      //                       Padding(
+      //                         padding: const EdgeInsets.all(10),
+      //                         child: Text(document.data()['caption']),
+      //                       ),
+      //                       Padding(
+      //                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+      //                         child: Text(
+      //                           format_posted_time(
+      //                               document.data()['posted_time']),
+      //                           style: TextStyle(fontSize: 12),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   );
+      //                 }).toList(),
+      //               );
+      //             },
+      //           )),
+      //     ),
+      //   ],
+      // ),
     );
   }
 
@@ -276,5 +438,4 @@ class _HomeScreenState extends State<HomeScreen> {
       return 'Just now';
     }
   }
-
 }

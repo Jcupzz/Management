@@ -3,6 +3,7 @@ import 'package:cce/Models/User.dart';
 import 'package:cce/Pages/Register.dart';
 import 'package:cce/Pages/UserProfile.dart';
 import 'package:cce/Post_Feed_Pages/Add_Post.dart';
+import 'package:cce/Story_Feed_Pages/Create_Stories_Hub.dart';
 import 'package:cce/Theme/ThemeController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -147,13 +148,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   print("Add Post Clicked");
                   break;
                 case 1:
+                  createPostHub();
+                  print("Create Stories Hub Clicked");
+                  break;
+                case 2:
                   changeThemeShowDialog(context);
                   print("Theme switcher Clicked");
                   break;
-                case 2:
+                case 3:
                   print("Settings Clicked");
                   break;
-                case 3:
+                case 4:
                   logout();
                   print("Logout Clicked");
                   break;
@@ -162,9 +167,10 @@ class _HomeScreenState extends State<HomeScreen> {
             itemBuilder: (BuildContext context) {
               return [
                 PopupMenuItem(value: 0, child: Text("Add Post")),
-                PopupMenuItem(value: 1, child: Text("Theme")),
-                PopupMenuItem(value: 2, child: Text("Settings")),
-                PopupMenuItem(value: 3, child: Text("Logout")),
+                PopupMenuItem(value: 1, child: Text("Create Stories Hub")),
+                PopupMenuItem(value: 2, child: Text("Theme")),
+                PopupMenuItem(value: 3, child: Text("Settings")),
+                PopupMenuItem(value: 4, child: Text("Logout")),
               ];
             },
           )
@@ -547,6 +553,11 @@ class _HomeScreenState extends State<HomeScreen> {
   void addPost() {
     Navigator.push(context,
         MaterialPageRoute(builder: (BuildContext buildContext) => Add_Post()));
+  }
+
+  void createPostHub() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (BuildContext buildContext) => Create_Stories_Hub()));
   }
 
   void logout() async {

@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cce/Constants/Loading.dart';
+import 'package:cce/Models/Post.dart';
 import 'package:cce/Pages/home.dart';
 import 'package:cce/Post_Feed_Pages/DatabaseServices_Post.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,10 +14,10 @@ class Add_Post extends StatefulWidget {
 }
 
 class _Add_PostState extends State<Add_Post> {
-  String caption; // String to store caption
+  String description; // String to store caption
   int pcdd_val = 0; //post_category_drop_down_value
   File _image; // image post location in device
-  dynamic remainder_time; // remainder time
+  dynamic remainderDate; // remainder time
   DatabaseServices_Post databaseServices_Post = new DatabaseServices_Post();
   HomeScreen homeScreen = new HomeScreen();
 
@@ -86,7 +87,7 @@ class _Add_PostState extends State<Add_Post> {
                 maxLines: 8,
                 expands: false,
                 onChanged: (caption_value) {
-                  caption = caption_value;
+                  description = caption_value;
                 },
               ),
             ),
@@ -167,8 +168,8 @@ class _Add_PostState extends State<Add_Post> {
                         },
                         onConfirm: (confirmed_date) {
                           print('confirm $confirmed_date');
-                          remainder_time = confirmed_date;
-                          print("date successfully: $remainder_time");
+                          remainderDate = confirmed_date;
+                          print("date successfully: $remainderDate");
                         },
                         currentTime: DateTime(DateTime.now().year,
                             DateTime.now().month, DateTime.now().day, 12, 0),
@@ -198,19 +199,22 @@ class _Add_PostState extends State<Add_Post> {
                       
                       Navigator.pop(context);
                       if (_image != null &&
-                          caption != null &&
-                          remainder_time != null) {
+                          description.length != 0 &&
+                          remainderDate != null) {
                         print("reached here at last");
-                        await databaseServices_Post
-                            .upload_post(
-                                caption, remainder_time, DateTime.now(), _image)
-                            .then((value) {
-                          if (value == true) {
-                            print('reached navigator!thank you god!!!');
-                          } else {
-                            print("Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-                          }
-                        });
+                        // await databaseServices_Post
+                        //     .upload_post(
+                        //         caption, remainder_time, DateTime.now(), _image)
+                        //     .then((value) {
+                        //   if (value == true) {
+                        //     print('reached navigator!thank you god!!!');
+                        //   } else {
+                        //     print("Error!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        //   }
+                        // });
+                        String url = await databaseServices_Post.getUrlOfPost(_image);
+                        Post post = new Post(url, description, DateTime.now(), remainderDate);
+                        await post.uploadPost();
                       }
                     },
                     color: Colors.grey[600],
